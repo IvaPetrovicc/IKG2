@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predračun</title>
+    <title>Predracun-Zadro</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('pozadina.jpg');
+            background-image: url('pozadina1.jpg');
             background-size: cover;
             background-position: center;
             margin: 0;
@@ -163,9 +163,26 @@
                 <label for="recipient">Predracun za:</label>
                 <input type="text" id="recipient" name="recipient" required>
             </div>
+             
+            <div class="field">
+                <label for="address">Adresa:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="postalCode">Poštanski Broj:</label>
+                <input type="text" id="postalCode" name="postalCode" required>
+            </div>
+            <div class="field">
+                <label for="city">Grad:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            
             <div class="field">
                 <label for="date">Datum:</label>
                 <input type="date" id="date" name="date" required>
+            </div>
             </div>
         </div>
 
@@ -226,6 +243,9 @@
             const pageHeight = doc.internal.pageSize.height;
 
             const recipient = document.getElementById('recipient').value;
+            const address = document.getElementById('address').value;
+            const postalCode = document.getElementById('postalCode').value;
+            const city = document.getElementById('city').value;
             const date = document.getElementById('date').value;
 
             // Podaci za tablicu
@@ -247,11 +267,13 @@
             // Adding the logo
             doc.addImage(logoBase64, 'JPEG', 0, 0, 210, 110); // Adjust the position and size as needed
 
-            // Dodavanje podataka u PDF
-            doc.setFontSize(20);
-            doc.setFontSize(12);
-            doc.text(`Predracun za: ${recipient}`, 15, 90); // Adjusted position
-            doc.text(`Datum: ${date}`, 157, 90); // Adjusted position
+             // Dodavanje podataka u PDF
+             doc.setFontSize(20);
+             doc.setFontSize(12);
+             doc.text(`${recipient}`, 15, 85);
+             doc.text(`${address}`, 15, 90);
+             doc.text(`${postalCode}, ${city}`, 15, 95); // Adjusted position
+             doc.text(`Datum: ${date}`, 157, 90); // Adjusted position
 
             // Dodavanje tablice
             doc.autoTable({
